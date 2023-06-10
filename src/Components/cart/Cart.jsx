@@ -1,7 +1,7 @@
 import React from 'react'
 import { RxCross2 } from "react-icons/rx"
 import { useSelector, useDispatch } from 'react-redux';
-import { removeAddedProducts } from '../../ReduxTookit/Slice/Cartslice';
+import { removeAddedProducts,increaseProductquantity,decreaseProductquantity } from '../../ReduxTookit/Slice/Cartslice';
 const Cart = () => {
     const dispatch = useDispatch();
     // const {cart,totalPrice,totalQuantity}= useSelector((state)=>state.cartInfo);
@@ -10,22 +10,18 @@ const Cart = () => {
 
     const handleMinusEvent = (e, val) => {
         e.preventDefault();
-        
+
         dispatch(removeAddedProducts(val))
+    }
+
+    const handlePlusEvent=(e,val)=>{
+        e.preventDefault();
+        dispatch(increaseProductquantity(val))
     }
 
 
 
 
-
-    const cartitems = [
-        {
-            img: "https://shreethemes.in/doctris/layouts/assets/images/pharmacy/shop/thermometer.jpg",
-            productName: "Thermometer",
-            price: 16,
-            star: 5,
-            quantity: 1
-        }]
     return (
         <>
             <section className="bg-half-170 d-table w-100 bg-light">
@@ -72,7 +68,8 @@ const Cart = () => {
 
 
                                                 <tr key={id} >
-                                                    <td className="h5 p-3 text-center "><a href="#" className="text-danger "> <RxCross2 className='mt-4' /></a></td>
+                                                    <td className="h5 p-3 text-center "><a href="#" className="text-danger "> <RxCross2 className='mt-4'
+                                                    onClick={()=> dispatch(decreaseProductquantity(cartval.id))} /></a></td>
                                                     <td className="p-3">
                                                         <div className="d-flex align-items-center">
                                                             <img src={cartval.img} className="img-fluid avatar avatar-smal  rounded shadow" style={{
@@ -85,9 +82,9 @@ const Cart = () => {
                                                     <td className="text-center p-3 ">$ {cartval.price}</td>
                                                     <td className="text-center shop-list p-3">
                                                         <div className="qty-icons gap-2 d-flex align-items-center justify-content-center">
-                                                            <button onClick={(e) => handleMinusEvent(e, cartval)} className="btn btn-icon btn-primary ">-</button>
+                                                            <button onClick={(e) => handleMinusEvent(e, cartval.id)} className="btn btn-icon btn-primary ">-</button>
                                                             <p className="btn btn-icon btn-primary m-0">{cartval.quantity}</p>
-                                                            <button onClick={() => { }} className="btn btn-icon btn-primary">+</button>
+                                                            <button onClick={(e) => { handlePlusEvent(e, cartval.id) }} className="btn btn-icon btn-primary">+</button>
                                                         </div>
                                                     </td>
                                                     <td className="text-end font-weight-bold p-3">${cartval.quantity * cartval.price}</td>
