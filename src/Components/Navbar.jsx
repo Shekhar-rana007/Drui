@@ -8,13 +8,13 @@ const data= useSelector(state=>state.userinfo);
 const handleclick=(e)=>{
   e.preventDefault();
   dispatch(adduser(1));
-  console.log(data)
+  // console.log(data)
 }
 
 const removehandleclick=(e)=>{
   e.preventDefault();
   dispatch(minusUser(1));
-  console.log(data)
+  // console.log(data)
 }
   return (
     <>

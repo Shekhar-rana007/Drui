@@ -1,14 +1,18 @@
 import React from 'react'
 import { RxCross2 } from "react-icons/rx"
-import { useSelector,useDispatch } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { removeAddedProducts } from '../../ReduxTookit/Slice/Cartslice';
 const Cart = () => {
-    const dispatch= useDispatch();
-// const {cart,totalPrice,totalQuantity}= useSelector((state)=>state.cartInfo);
+    const dispatch = useDispatch();
+    // const {cart,totalPrice,totalQuantity}= useSelector((state)=>state.cartInfo);
 
-const {cart}= useSelector((state)=>state.cartInfo);
+    const { cart } = useSelector((state) => state.cartInfo);
 
-
+    const handleMinusEvent = (e, val) => {
+        e.preventDefault();
+        
+        dispatch(removeAddedProducts(val))
+    }
 
 
 
@@ -63,24 +67,26 @@ const {cart}= useSelector((state)=>state.cartInfo);
                                     <tbody >
 
                                         {cart.map((cartval, id) => {
-                                            console.log(cartval)
+                                            // console.log(cartval)
                                             return (
 
 
                                                 <tr key={id} >
-                                                    <td className="h5 p-3 text-center "><a href="#" className="text-danger "> <RxCross2 className='mt-4'/></a></td>
+                                                    <td className="h5 p-3 text-center "><a href="#" className="text-danger "> <RxCross2 className='mt-4' /></a></td>
                                                     <td className="p-3">
                                                         <div className="d-flex align-items-center">
-                                                            <img src={cartval.img} className="img-fluid avatar avatar-smal  rounded shadow" style={{ height: 'auto', width:
-                                                            "55px" }} alt="" />
+                                                            <img src={cartval.img} className="img-fluid avatar avatar-smal  rounded shadow" style={{
+                                                                height: 'auto', width:
+                                                                    "55px"
+                                                            }} alt="" />
                                                             <h6 className="mb-0 ms-3">{cartval.productName}</h6>
                                                         </div>
                                                     </td>
                                                     <td className="text-center p-3 ">$ {cartval.price}</td>
                                                     <td className="text-center shop-list p-3">
                                                         <div className="qty-icons gap-2 d-flex align-items-center justify-content-center">
-                                                            <button onClick={() => { }} className="btn btn-icon btn-primary ">-</button>
-                                                          <p  className="btn btn-icon btn-primary m-0">{cartval.quantity}</p>
+                                                            <button onClick={(e) => handleMinusEvent(e, cartval)} className="btn btn-icon btn-primary ">-</button>
+                                                            <p className="btn btn-icon btn-primary m-0">{cartval.quantity}</p>
                                                             <button onClick={() => { }} className="btn btn-icon btn-primary">+</button>
                                                         </div>
                                                     </td>
@@ -99,37 +105,37 @@ const {cart}= useSelector((state)=>state.cartInfo);
             <section className='sectioncash'>
                 <div className="container">
                     <div className="row">
-                                        
-                <div className="row ml-5">
-      <div className="col-lg-8 col-md-6 pt-2 mt-4" >
-        <a href="#" className="btn btn-primary">Shop More</a>
-        <a href="#" className="btn btn-soft-primary ms-2">Update Cart</a>
-      </div>
-      <div className="col-lg-4 col-md-6 ms-auto mt-4 pt-2">
-        <div className="table-responsive bg-white rounded shadow">
-          <table className="table table-center table-padding mb-0">
-            <tbody>
-              <tr>
-                <td className="h6 p-3">Subtotal</td>
-                <td className="text-end font-weight-bold p-3">$ 2190</td>
-              </tr>
-              <tr>
-                <td className="h6 p-3">Taxes</td>
-                <td className="text-end font-weight-bold p-3">$ 219</td>
-              </tr>
-              <tr className="bg-light">
-                <td className="h6 p-3">Total</td>
-                <td className="text-end font-weight-bold p-3">$ 2409</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="mt-4 pt-2 text-end">
-          <a href="#" className="btn btn-primary">Proceed to checkout</a>
-        </div>
-      </div>
-    </div>
-    </div>
+
+                        <div className="row ml-5">
+                            <div className="col-lg-8 col-md-6 pt-2 mt-4" >
+                                <a href="#" className="btn btn-primary">Shop More</a>
+                                <a href="#" className="btn btn-soft-primary ms-2">Update Cart</a>
+                            </div>
+                            <div className="col-lg-4 col-md-6 ms-auto mt-4 pt-2">
+                                <div className="table-responsive bg-white rounded shadow">
+                                    <table className="table table-center table-padding mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td className="h6 p-3">Subtotal</td>
+                                                <td className="text-end font-weight-bold p-3">$ 2190</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="h6 p-3">Taxes</td>
+                                                <td className="text-end font-weight-bold p-3">$ 219</td>
+                                            </tr>
+                                            <tr className="bg-light">
+                                                <td className="h6 p-3">Total</td>
+                                                <td className="text-end font-weight-bold p-3">$ 2409</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="mt-4 pt-2 text-end">
+                                    <a href="#" className="btn btn-primary">Proceed to checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
