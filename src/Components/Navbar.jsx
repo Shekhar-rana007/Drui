@@ -18,9 +18,9 @@ const removehandleclick=(e)=>{
 }
   return (
     <>
-<button onClick={(e)=>handleclick(e)} >add</button>
+{/* <button onClick={(e)=>handleclick(e)} >add</button>
 <button onClick={(e)=>removehandleclick(e)} >minus</button>
-<p>{data}</p>
+<p>{data}</p> */}
    
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
@@ -44,6 +44,20 @@ const removehandleclick=(e)=>{
             </ul>
 
           </div>
+
+          <div className="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/cart">Cart</NavLink>
+              </li>
+
+              
+            </ul>
+
+          </div>
+
+
+
         </div>
       </nav>
 
