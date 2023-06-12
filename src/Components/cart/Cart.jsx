@@ -68,7 +68,7 @@ const Cart = () => {
 
 
                                                 <tr key={id} >
-                                                    <td className="h5 p-3 text-center "><a href="#" className="text-danger "> <RxCross2 className='mt-4'
+                                                    <td className="h5 p-3 text-center "><a href="#"              className="text-danger "> <RxCross2 className='mt-4'
                                                     onClick={()=> dispatch(decreaseProductquantity(cartval.id))} /></a></td>
                                                     <td className="p-3">
                                                         <div className="d-flex align-items-center">
