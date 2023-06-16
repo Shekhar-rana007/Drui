@@ -22,7 +22,7 @@ const cartSlice = createSlice({
         },
 
         removeAddedProducts(state, action) {
-            console.log("dhmkjsksfs")
+        
             state.cart = state.cart.map((item) => {
                 if (item.id === action.payload) {
                     return { ...item, quantity: item.quantity - 1 };
@@ -33,13 +33,13 @@ const cartSlice = createSlice({
         },
 
         increaseProductquantity(state,action){
-                state.cart= state.cart.map((items)=>{
-                    if(items.id === action.payload){
-                        return {...items, quantity:items.quantity+1};
-                    }else{
-                        return items;
-                    }
-                })
+               state.cart= state.cart.map((items)=>{
+                if(items.id=== action.payload){
+                    return {...items, quantity:items.quantity+1}
+                }else{
+                    return items;
+                }
+               })
         },
         decreaseProductquantity(state,action){
                 state.cart= state.cart.filter((item)=>item.id!== action.payload)

@@ -50,6 +50,13 @@ const removehandleclick=(e)=>{
               <li className="nav-item">
                 <NavLink className="nav-link" to="/cart">Cart</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/sign-up">Sign-up</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/sign-in">Sign-in</NavLink>
+              </li>
+
 
               
             </ul>

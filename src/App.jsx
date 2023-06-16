@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom"
 import Drshop from "./Shop/Drshop"
 import Navbar from "./Components/Navbar"
 import Cart from "./Components/cart/Cart"
+import Signin from "./Components/authentication/SignIn"
+import Signup from "./Components/authentication/Signup"
 function App() {
  
 
@@ -16,6 +18,8 @@ function App() {
 <Route path="/doctor" element={<Drsectionmain />}/>
 <Route path="/shop" element={<Drshop />}/>  
 <Route path="/cart" element={<Cart />}/>  
+<Route path="/sign-in" element={<Signin />}/>  
+<Route path="/sign-up" element={<Signup />}/>  
 </Routes>
  
 
