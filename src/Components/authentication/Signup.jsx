@@ -1,5 +1,6 @@
 import React from 'react'
-import {AiFillFacebook} from "react-icons/ai"
+import {AiFillFacebook} from "react-icons/ai";
+import {SlSocialGoogle} from "react-icons/sl";
 
 
 function Signup() {
@@ -58,7 +59,7 @@ function Signup() {
                     </div>
 
                     <div className="col-6 mt-3">
-                      <div className="d-grid">
+                      <div className="d-flex align-items-center justify-content-top">
                         <a href="javascript:void(0)" className="btn btn-soft-primary" style={{
                            textAlign: 'center',
                            verticalAlign: 'middle',
@@ -96,7 +97,7 @@ function Signup() {
                           letterSpacing: '.5px',
                           transition: 'all .3s',
                           borderRadius: '5px'
-                       }}><i className="uil uil-google"></i> Google</a>
+                       }}><SlSocialGoogle /> Google</a>
                       </div>
                     </div>
 
