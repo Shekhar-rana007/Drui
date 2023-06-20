@@ -1,16 +1,24 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { NavLink,useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { adduser, minusUser } from '../ReduxTookit/Slice/Userdata';
 const Navbar = () => {
   const dispatch= useDispatch();
+  const auth= localStorage.getItem("user");
+const navigate= useNavigate();
 const data= useSelector(state=>state.userinfo);
 const handleclick=(e)=>{
   e.preventDefault();
   dispatch(adduser(1));
   // console.log(data)
 }
+if(auth){
+  useEffect(() => {
+  navigate("/");
 
+}, [auth])
+  
+}
 const removehandleclick=(e)=>{
   e.preventDefault();
   dispatch(minusUser(1));
@@ -40,6 +48,9 @@ const removehandleclick=(e)=>{
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/shop">Shop</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/applyDoctor">Applydoctors</NavLink>
               </li>
             </ul>
 

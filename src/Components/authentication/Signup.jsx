@@ -1,43 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {AiFillFacebook} from "react-icons/ai";
 import {SlSocialGoogle} from "react-icons/sl";
+import { NavLink, json, useNavigate } from 'react-router-dom';
 
 
 function Signup() {
+  const [fname, setfname]= useState("");
+  const [lname, setlname]= useState("");
+  const [email, setemail]= useState("");
+  const [password, setpassword]= useState("");
+  const navigate= useNavigate()
+
+  const signupSubmit= async(e)=>{
+    e.preventDefault();
+  // const data= await fetch("http://localhost:8100/drdata", {
+    const data= await fetch("http://localhost:8100/drapp/user/register", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({fname, lname, email, password}),}
+  )
+  const result= await data.json();
+  localStorage.setItem("user",JSON.stringify(result));
+//   setemail("")
+// setfname("")
+// setlname("")
+// setpassword("")  
+  if(result){
+    navigate("/sign-in")
+  }
+}
+ 
   return (
    <>
      <section className="bg-half-150 d-table w-100  bg-light" style={{ background: "url('../assets/images/bg/bg-lines-one.png') center",padding:"123px"}}>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-5 col-md-8">
-            <img src="https://shreethemes.in/doctris/layouts/assets/images/logo-dark.png" height="22" className="mx-auto d-block" alt="" />
+            <img src="https://shreethemes.in/doctris/layouts/assets/images/logo-dark.png" height="22vh" className="mx-auto d-block" alt="" />
             <div className="card login-page shadow mt-4 rounded border-0">
               <div className="card-body">
                 <h4 className="text-center">Sign Up</h4>
-                <form action="doctor-dashboard.html" className="login-form mt-4">
+                <form  className="login-form mt-4">
                   <div className="row">
                     <div className="col-md-6">
                       <div className="mb-3">
                         <label className="form-label">First name <span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" placeholder="First Name" name="s" required />
+                        <input type="text" className="form-control" defaultValue={setfname} required onChange={(e)=>setfname(e.target.value)} placeholder="First Name" name="s" />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="mb-3">
                         <label className="form-label">Last name <span className="text-danger">*</span></label>
-                        <input type="text" className="form-control" placeholder="Last Name" name="s" required />
+                        <input type="text" className="form-control" defaultValue={setlname} onChange={(e)=>setlname(e.target.value)} placeholder="Last Name" name="s" required />
                       </div>
                     </div>
                     <div className="col-md-12">
                       <div className="mb-3">
                         <label className="form-label">Your Email <span className="text-danger">*</span></label>
-                        <input type="email" className="form-control" placeholder="Email" name="email" required />
+                        <input type="email" className="form-control" defaultValue={setemail} onChange={(e)=>setemail(e.target.value)}  placeholder="Email" name="email" required />
                       </div>
                     </div>
+                  
                     <div className="col-md-12">
                       <div className="mb-3">
                         <label className="form-label">Password <span className="text-danger">*</span></label>
-                        <input type="password" className="form-control" placeholder="Password" required />
+                        <input type="password" className="form-control" defaultValue={setpassword}  onChange={(e)=>setpassword(e.target.value)} placeholder="Password" required />
                       </div>
                     </div>
                     <div className="col-md-12">
@@ -48,9 +75,10 @@ function Signup() {
                         </div>
                       </div>
                     </div>
+
                     <div className="col-md-12">
                       <div className="d-grid">
-                        <button className="btn btn-primary">Register</button>
+                        <button className="btn btn-primary" onClick={(e)=>signupSubmit(e)}>Register</button>
                       </div>
                     </div>
 
@@ -60,7 +88,7 @@ function Signup() {
 
                     <div className="col-6 mt-3">
                       <div className="d-flex align-items-center justify-content-top">
-                        <a href="javascript:void(0)" className="btn btn-soft-primary" style={{
+                        <a href="" className="btn btn-soft-primary" style={{
                            textAlign: 'center',
                            verticalAlign: 'middle',
                            cursor: 'pointer',
@@ -81,7 +109,7 @@ function Signup() {
 
                     <div className="col-6 mt-3">
                       <div className="d-grid">
-                        <a href="javascript:void(0)" className="btn btn-soft-primary"
+                        <a href="" className="btn btn-soft-primary"
                         style={{
                           textAlign: 'center',
                           verticalAlign: 'middle',
@@ -102,7 +130,7 @@ function Signup() {
                     </div>
 
                     <div className="mx-auto">
-                      <p className="mb-0 mt-3"><small className="text-dark me-2">Already have an account ?</small> <a href="login.html" className="text-dark fw-bold">Sign in</a></p>
+                      <p className="mb-0 mt-3"><small className="text-dark me-2">Already have an account ?</small> <NavLink to="/sign-in" className="text-dark fw-bold">Sign in</NavLink></p>
                     </div>
                   </div>
                 </form>
