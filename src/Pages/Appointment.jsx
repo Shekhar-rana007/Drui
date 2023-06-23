@@ -5,13 +5,16 @@ import { NavLink } from 'react-router-dom'
 import AppointmentPopup from './appointmentPopup'
 import axios from 'axios'
 const Appointment = () => {
-  
+  const [allappointments, setappointments]= useState([])
   const gettingappointments= async()=>{
     const fetchingData= await axios.get("http://localhost:8100/drapp/user/gettingappointments");
-    console.log(fetchingData.data.allAppointments);
+    console.log({fetchingdata: fetchingData.data.allAppointments}); 
+    // setappointments( fetchingData);
+    
 }
   useEffect(()=>{
     gettingappointments();
+    console.log(allappointments);
   },[])
 
   return (
@@ -73,14 +76,17 @@ const Appointment = () => {
                         </tr>
                       </thead>
 
+                          {allappointments.map((value,index)=>{
+
                       <tbody>
-                        <tr>
+                        <tr key={index}>
+                            
                           <th className="p-3">1</th>
                           <td className="p-3">
                             <a href="#" className="text-dark">
                               <div className="d-flex align-items-center">
                                 <img src="../assets/images/client/01.jpg" className="avatar avatar-md-sm rounded-circle shadow" alt="" />
-                                <span className="ms-2">Howard Tanner</span>
+                                <span className="ms-2">{value.patient}</span>
                               </div>
                             </a>
                           </td>
@@ -195,9 +201,8 @@ const Appointment = () => {
                             </a>
                           </td>
                         </tr>
-
-
                       </tbody>
+                          })}
                     </table>
                   </div>
                 </div>

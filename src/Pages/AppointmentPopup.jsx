@@ -19,7 +19,7 @@ const handleModal = async(e) => {
    console.log(formdata.patient);
    try {
     const appointmentDetails= await axios.post("http://localhost:8100/drapp/user/appointmentDetails",formdata);
-    console.log(appointmentDetails)
+    // console.log(appointmentDetails)
    } catch (error) {
     console.log(error)
    }
