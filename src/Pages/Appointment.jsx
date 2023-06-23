@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DrsSidebar from '../Components/Drdashboard/DrsSidebar'
 import { AiFillCheckCircle, AiFillEye, AiOutlineCloseCircle } from "react-icons/ai"
 import { NavLink } from 'react-router-dom'
 import AppointmentPopup from './appointmentPopup'
+import axios from 'axios'
 const Appointment = () => {
-  const [show, setshow] = useState(true);
+  
+  const gettingappointments= async()=>{
+    const fetchingData= await axios.get("http://localhost:8100/drapp/user/gettingappointments");
+    console.log(fetchingData.data.allAppointments);
+}
+  useEffect(()=>{
+    gettingappointments();
+  },[])
 
   return (
     <>
       <AppointmentPopup data={"#exampleModal"}  />
-
       <section className="bg-dashboard">
         <div className="container-fluid">
           <div className="row ">

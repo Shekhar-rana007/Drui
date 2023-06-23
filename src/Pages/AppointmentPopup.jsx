@@ -1,46 +1,51 @@
 import React, { useState } from 'react'
-
+import axios from 'axios';
 const AppointmentPopup = () => {
-const [patient, setpatient]= useState("")
-const [department, setdepartment]= useState("")
-const [message, setmessage]= useState("")
-const [time, settime]= useState("")
-const [date, setdate]= useState("")
-const [phone, setphone]= useState("")
-const [email, setemail]= useState("")
-const [doctor, setdoctor]= useState("")
 
+    const appointmentdetails={
+        patient:"",
+        department:"",
+        message:"",
+        time:"",
+        date:"",
+        phone:"",
+        email:"",
+        doctor:""
+    }
+const [formdata,setformdata]=useState(appointmentdetails);
 
-
-
-
-
-console.log(date);
-
-    const handleModal = () => {
-        setSetshowmodal(false)
+const handleModal = async(e) => {
+   e.preventDefault();
+   console.log(formdata.patient);
+   try {
+    const appointmentDetails= await axios.post("http://localhost:8100/drapp/user/appointmentDetails",formdata);
+    console.log(appointmentDetails)
+   } catch (error) {
+    console.log(error)
+   }
+        
     }
     return (
-        <div class="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" >
-                <div class="modal-content" >
-                    <div class="modal-header"    >
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"> Book an Appointment</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade m-5" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-lg" >
+                <div className="modal-content" >
+                    <div className="modal-header"    >
+                        <h1 className="modal-title fs-5" id="exampleModalLabel"> Book an Appointment</h1>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body p-5">
                         <form>
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="mb-3">
                                         <label className="form-label">Patient Name <span className="text-danger">*</span></label>
-                                        <input name="name" id="name" onChange={(e)=> setpatient(e.target.value)} type="text" className="form-control" placeholder="Patient Name :"  />
+                                        <input name="name" id="name" onChange={(e)=> setformdata({...formdata,patient:e.target.value})} type="text" className="form-control" placeholder="Patient Name :"  />
                                     </div>
                                 </div>
                                 <div className="col-lg-4 col-md-6">
                                     <div className="mb-3">
                                         <label className="form-label">Departments</label>
-                                        <select className="form-select form-control" onChange={(e)=> setdepartment(e.target.value)}>
+                                        <select className="form-select form-control"onChange={(e)=> setformdata({...formdata,department:e.target.value})}>
                                             <option value="EY">Eye Care</option>
                                             <option value="GY">Gynecologist</option>
                                             <option value="PS">Psychotherapist</option>
@@ -55,7 +60,7 @@ console.log(date);
                                 <div className="col-lg-4 col-md-6">
                                     <div className="mb-3">
                                         <label className="form-label">Doctor</label>
-                                        <select className="form-select form-control" onChange={(e)=>setdoctor(e.target.value)}>
+                                        <select className="form-select form-control"onChange={(e)=> setformdata({...formdata,doctor:e.target.value})}>
                                             <option value="CA">Dr. Calvin Carlo</option>
                                             <option value="CR">Dr. Cristino Murphy</option>
                                             <option value="AL">Dr. Alia Reddy</option>
@@ -70,19 +75,19 @@ console.log(date);
                                 <div className="col-lg-4 col-md-6">
                                     <div className="mb-3">
                                         <label className="form-label">Your Email <span className="text-danger">*</span></label>
-                                        <input name="email" id="email" type="email" onChange={(e)=>setemail(e.target.value)}className="form-control" placeholder="Your email :" />
+                                        <input name="email" id="email" type="email"onChange={(e)=> setformdata({...formdata,email:e.target.value})}  placeholder="Your email :" />
                                     </div>
                                 </div>
                                 <div className="col-lg-4 col-md-6">
                                     <div className="mb-3">
                                         <label className="form-label">Your Phone <span className="text-danger">*</span></label>
-                                        <input name="phone" id="phone" type="tel" className="form-control" placeholder="Your Phone :" onChange={(e)=>setphone(e.target.value)}/>
+                                        <input name="phone" id="phone" type="tel" className="form-control" placeholder="Your Phone :" onChange={(e)=>setformdata({...formdata,phone:e.target.value})}/>
                                     </div>
                                 </div>
                                 <div className="col-lg-4 col-md-6">
                                     <div className="mb-3" style={{ position: 'relative' }}>
                                         <label className="form-label">Date :</label>
-                                        <input name="date" type="date" className="form-control start" placeholder="Select date :" onChange={(e)=>setdate(e.target.value)} />
+                                        <input name="date" type="date" className="form-control start" placeholder="Select date :" onChange={(e)=>setformdata({...formdata,date:e.target.value})} />
                                         <div className="qs-datepicker-container qs-hidden">
 
                                         </div>
@@ -91,18 +96,18 @@ console.log(date);
                                 <div className="col-lg-4 col-md-6">
                                     <div className="mb-3">
                                         <label className="form-label" htmlFor="input-time">Time :</label>
-                                        <input name="time" type="text" className="form-control timepicker" id="input-time" placeholder="03:30 PM" onChange={(e)=>settime(e.target.value)} />
+                                        <input name="time" type="time" className="form-control timepicker" id="input-time" placeholder="03:30 PM" onChange={(e)=>setformdata({...formdata, time:e.target.value})} />
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="mb-3">
                                         <label className="form-label">Comments <span className="text-danger">*</span></label>
-                                        <textarea name="comments" id="comments" rows="4" className="form-control" placeholder="Your Message :" onChange={(e)=>setmessage(e.target.value)}></textarea>
+                                        <textarea name="comments" id="comments" rows="4" className="form-control" placeholder="Your Message :" onChange={(e)=>setformdata({...formdata,message:e.target.value})}></textarea>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="d-grid">
-                                        <button type="submit" className="btn btn-primary">Book An Appointment</button>
+                                        <button type="submit" className="btn btn-primary" onClick={(e)=>handleModal(e)}>Book An Appointment</button>
                                     </div>
                                 </div>
                             </div>

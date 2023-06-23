@@ -12,8 +12,6 @@ import Appointment from "./Pages/Appointment"
 import AppointmentPopup from "./Pages/appointmentPopup"
 // import PrivateComponent from "./Components/PrivateComponent"
 function App() {
- 
-
   return (
     <>
 <Navbar />  
@@ -27,12 +25,10 @@ function App() {
 <Route path="/sign-in" element={<Signin />}/>  
 <Route path="/appointment" element={<Appointment />}/>  
 <Route path="/appointmentPopups" element={<AppointmentPopup />}/>  
+<Route path="/dashboard" element={<Drsectionmain />}/>  
 {/* </Route> */}
 <Route path="/sign-up" element={<Signup />}/>  
 </Routes>
- 
-
-   
     </>
   )
 }

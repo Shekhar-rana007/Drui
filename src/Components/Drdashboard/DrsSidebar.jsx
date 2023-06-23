@@ -22,9 +22,9 @@ const DrsSidebar = () => {
             </div>
 
             <ul className="list-unstyled sidebar-nav mb-3 d-flex justify-content-center flex-column  ms-5 p-3 ">
-                <li className="navbar-item active  "><a href="doctor-dashboard.html  "
+                <li className="navbar-item active  "><NavLink to="/dashboard"
                     style={{ fontSize: "15px", marginBottom: "15px", textDecoration: "none", listStyle: "none", color: "black" }} className="navbar-link fw-bolder ">
-                    <FiAirplay size={20} style={{ marginRight: "15px" }} /> Dashboard</a></li>
+                    <FiAirplay size={20} style={{ marginRight: "15px" }} /> Dashboard</NavLink></li>
                 <li className="navbar-item active"><NavLink to="/appointment"
                     style={{ fontSize: "15px", textDecoration: "none", listStyle: "none", color: "black" }} className="navbar-link fw-bolder">
                     <BsFillCalendarCheckFill size={20} style={{ marginRight: "15px" }} />
