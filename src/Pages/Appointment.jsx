@@ -3,19 +3,26 @@ import DrsSidebar from '../Components/Drdashboard/DrsSidebar'
 import { AiFillCheckCircle, AiFillEye, AiOutlineCloseCircle } from "react-icons/ai"
 import { NavLink } from 'react-router-dom'
 import AppointmentPopup from './appointmentPopup'
-import axios from 'axios'
+import axios from 'axios';
+import { appointmentdata, appointmentsarr } from '../ReduxTookit/Slice/AppointmentSlice'
+import { useDispatch,useSelector } from 'react-redux'
+import { doctorarr,doctorsdata } from '../ReduxTookit/Slice/DoctorSlice'
 const Appointment = () => {
-  const [allappointments, setappointments]= useState([])
-  const gettingappointments= async()=>{
-    const fetchingData= await axios.get("http://localhost:8100/drapp/user/gettingappointments");
-    console.log({fetchingdata: fetchingData.data.allAppointments}); 
-    // setappointments( fetchingData);
-    
-}
-  useEffect(()=>{
-    gettingappointments();
-    console.log(allappointments);
-  },[])
+const dispatch= useDispatch();
+const data= useSelector(appointmentsarr);
+// const drdata= useSelector(doctorarr);
+const [appointments, setappointments]= useState(data);
+useEffect(()=>{
+  dispatch(appointmentdata());
+  setappointments(data)
+
+},[])
+useEffect(()=>{
+  setappointments(data);
+},[data]);
+console.log(data);
+console.log(doctorData);
+
 
   return (
     <>
@@ -76,12 +83,14 @@ const Appointment = () => {
                         </tr>
                       </thead>
 
-                          {allappointments.map((value,index)=>{
+                        
 
                       <tbody>
-                        <tr key={index}>
+          {appointments.map((value,index)=>{
+          return(
+                        <tr >
                             
-                          <th className="p-3">1</th>
+                          <th className="p-3">{index+1}</th>
                           <td className="p-3">
                             <a href="#" className="text-dark">
                               <div className="d-flex align-items-center">
@@ -92,7 +101,7 @@ const Appointment = () => {
                           </td>
                           <td className="p-3">25</td>
                           <td className="p-3">Male</td>
-                          <td className="p-3">Cardiology</td>
+                          <td className="p-3">{value.department}</td>
                           <td className="p-3">20th Dec 2020</td>
                           <td className="p-3">11:00AM</td>
                           <td className="p-3" style={{
@@ -200,9 +209,9 @@ const Appointment = () => {
                               <AiOutlineCloseCircle />
                             </a>
                           </td>
-                        </tr>
+                        </tr>)
+                    })}
                       </tbody>
-                          })}
                     </table>
                   </div>
                 </div>

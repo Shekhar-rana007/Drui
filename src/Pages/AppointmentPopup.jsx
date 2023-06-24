@@ -46,14 +46,14 @@ const handleModal = async(e) => {
                                     <div className="mb-3">
                                         <label className="form-label">Departments</label>
                                         <select className="form-select form-control"onChange={(e)=> setformdata({...formdata,department:e.target.value})}>
-                                            <option value="EY">Eye Care</option>
-                                            <option value="GY">Gynecologist</option>
-                                            <option value="PS">Psychotherapist</option>
-                                            <option value="OR">Orthopedic</option>
-                                            <option value="DE">Dentist</option>
-                                            <option value="GA">Gastrologist</option>
-                                            <option value="UR">Urologist</option>
-                                            <option value="NE">Neurologist</option>
+                                            <option >Eye Care</option>
+                                            <option >Gynecologist</option>
+                                            <option >Psychotherapist</option>
+                                            <option >Orthopedic</option>
+                                            <option >Dentist</option>
+                                            <option >Gastrologist</option>
+                                            <option >Urologist</option>
+                                            <option >Neurologist</option>
                                         </select>
                                     </div>
                                 </div>
